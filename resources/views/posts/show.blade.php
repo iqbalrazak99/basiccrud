@@ -10,7 +10,7 @@
 </div>
 <div class="row">
 	<div class="col-12 mb-3">
-		<strong>Post Titile: </strong>
+		<strong>Post Title: </strong>
 		{!! $post->post_title !!}
 	</div>
 	<div class="col-12 mb-3">

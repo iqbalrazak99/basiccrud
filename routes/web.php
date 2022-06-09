@@ -2,33 +2,39 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\http\Controllers\CustomAuthController;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
 |
 */
-// Route::resource('/posts', PostController::class);
+Route::resource('/posts', PostController::class);
+/*
+ Route::resource('/dashboard', CustomAuthController::class)*/
 
- 
 // Route::get('/greeting', function () {
 //     return 'Hello World';
 // });
 
-
+/*
 Route::get('/posts', [PostController::class, 'index']) ->name('posts.index');
-
 Route::get('/posts/create', [PostController::class, 'create']) ->name('posts.create');
+//Route::delete('/posts/destroy', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('/posts/show', [PostController::class, 'show']) ->name('posts.show');  //jadii
+Route::get('/posts/edit', [PostController::class, 'edit']) ->name('posts.edit');
+Route::post('/posts/store', [PostController::class, 'store']) ->name('posts.store'); // dah jadi
+Route::post('/posts/update', [PostController::class, 'update'])->name('posts.update');
+Route::post('/posts/destroy', [PostController::class, 'destroy']) ->name('posts.destroy'); */
 
-Route::get('/posts/destroy', [PostController::class, 'index']) ->name('posts.destroy');
 
-Route::get('/posts/show', [PostController::class, 'index']) ->name('posts.show');
 
-Route::get('/posts/edit', [PostController::class, 'index']) ->name('posts.edit');
 
-Route::get('/posts/store', [PostController::class, 'index']) ->name('posts.store');
+Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
+Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom');
+Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
