@@ -11,6 +11,11 @@ use App\http\Controllers\CustomAuthController;
 |
 |
 */
+
+Route::get('/', function () {
+    return view('/auth.registration');
+});
+
 Route::resource('/posts', PostController::class);
 /*
  Route::resource('/dashboard', CustomAuthController::class)*/
@@ -32,7 +37,7 @@ Route::post('/posts/destroy', [PostController::class, 'destroy']) ->name('posts.
 
 
 
-Route::get('dashboard', [CustomAuthController::class, 'dashboard']);
+Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name('custom.index');
 Route::get('login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
